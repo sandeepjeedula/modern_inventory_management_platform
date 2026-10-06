@@ -1,0 +1,2 @@
+# modern_inventory_management_platform
+modern inventory management platform
