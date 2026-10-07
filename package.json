@@ -1,0 +1,39 @@
+{
+  "name": "modern-inventory-management-platform",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c cyan,green \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run start:dev -w @inventory/api",
+    "dev:web": "npm run dev -w @inventory/web",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test:e2e": "npm run test:e2e -w @inventory/api && npm run test:e2e -w @inventory/web",
+    "format:check": "prettier --check .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.22.0",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.22.0",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.26.1"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10"
+  },
+  "overrides": {
+    "@nestjs/swagger": {
+      "js-yaml": "^5.4.3"
+    }
+  }
+}
